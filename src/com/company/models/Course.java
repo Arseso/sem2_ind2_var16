@@ -2,25 +2,37 @@ package com.company.models;
 
 public class Course {
     int ID = 0;
+    String Title = "";
     String URL = "";
     boolean isHasCost = false;
     int CourseCost = 0;
     int Listeners = 0;
     int Otzivi = 0;
     int Lections = 0;
-    int Difficulty = 0;
-    int TimeSpan = 0;
+    String Difficulty = "";
+    float TimeSpan = 0;
+
+    float AverageLectionsPerWeek = 0;
 
     public void setTimeSpan(int timeSpan) {
         TimeSpan = timeSpan;
     }
 
-    public int getTimeSpan() {
+    public float getTimeSpan() {
         return TimeSpan;
     }
 
-    public Course(int ID, String URL, boolean isHasCost, int courseCost, int listeners, int otzivi, int lections, int difficulty, int timespan) {
+    public String getTitle() {
+        return Title;
+    }
+
+    public float getAverageLectionsPerWeek() {
+        return AverageLectionsPerWeek;
+    }
+
+    public Course(int ID, String Title, String URL, boolean isHasCost, int courseCost, int listeners, int otzivi, int lections, String difficulty, float timespan) {
         this.ID = ID;
+        this.Title = Title;
         this.URL = URL;
         this.isHasCost = isHasCost;
         CourseCost = courseCost;
@@ -28,7 +40,9 @@ public class Course {
         Otzivi = otzivi;
         Lections = lections;
         Difficulty = difficulty;
-        this.TimeSpan = timespan;
+        TimeSpan = timespan;
+
+        AverageLectionsPerWeek = Lections/(TimeSpan*4);
     }
 
     public void setID(int ID) {
@@ -59,7 +73,7 @@ public class Course {
         Lections = lections;
     }
 
-    public void setDifficulty(int difficulty) {
+    public void setDifficulty(String difficulty) {
         Difficulty = difficulty;
     }
 
@@ -91,7 +105,7 @@ public class Course {
         return Lections;
     }
 
-    public int getDifficulty() {
+    public String getDifficulty() {
         return Difficulty;
     }
 }
