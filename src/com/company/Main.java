@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.models.Course;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.PrintStream;
 import java.util.*;
@@ -11,6 +12,10 @@ public class Main {
         PrintStream console = new PrintStream(System.out);
 
         ArrayList<Course> cources = FileWorking.getArrayFromFile();
+        if(cources == null){
+            System.out.println("Файл содержит ошибки");
+            return;
+        }
         printCourse(TimeSpanSmallOrEquals3Month(cources));
         printCourse(Top10Popular(cources));
         printCourse(SortFreeByLectionsPerWeek(cources));
@@ -72,8 +77,10 @@ public class Main {
         System.out.println("[Top10Popular]");
 
         List<Course> cost_cources = new ArrayList<>();
-        for(Course c : cources) if(c.isHasCost()) cost_cources.add(c);
-
+        for(Course c : cources) if(c.isHasCost()) {
+            cost_cources.add(c);
+            //System.out.println("[Trigger] cost_cources elem added");
+        }
         cost_cources.sort(Comparator.comparing(Course::getListeners));
         Collections.reverse(cost_cources);
         cost_cources = cost_cources.subList(0,9);

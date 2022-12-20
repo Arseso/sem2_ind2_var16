@@ -1,18 +1,17 @@
 package com.company.models;
 
 public class Course {
-    int ID = 0;
-    String Title = "";
-    String URL = "";
-    boolean isHasCost = false;
-    int CourseCost = 0;
-    int Listeners = 0;
-    int Otzivi = 0;
-    int Lections = 0;
-    String Difficulty = "";
-    float TimeSpan = 0;
-
-    float AverageLectionsPerWeek = 0;
+    private int ID = 0;
+    private String Title = "";
+    private String URL = "";
+    private boolean isHasCost = false;
+    private int CourseCost = 0;
+    private int Listeners = 0;
+    private int Otzivi = 0;
+    private int Lections = 0;
+    private String Difficulty = "";
+    private float TimeSpan = 0;
+    private float AverageLectionsPerWeek = 0;
 
     public void setTimeSpan(int timeSpan) {
         TimeSpan = timeSpan;

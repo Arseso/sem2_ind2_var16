@@ -4,6 +4,7 @@ import com.company.models.Course;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class FileWorking {
 
@@ -24,6 +25,14 @@ public class FileWorking {
         } catch (FileNotFoundException ex){}
     }
 
+    private static boolean isDataCorrect(ArrayList<Course> cources){
+        for (Course c : cources){
+            if(!c.getURL().contains("https://")) return false;
+        }
+        return true;
+    }
+
+
     private static ArrayList<Course> getArray(BufferedReader reader) {
         String s;
         ArrayList<Course> cources = new ArrayList<Course>();
@@ -33,7 +42,7 @@ public class FileWorking {
                         Integer.parseInt(s),
                         reader.readLine(),
                         reader.readLine(),
-                        toBool(reader.readLine()),
+                        reader.readLine().equals("True"),
                         Integer.parseInt(reader.readLine()),
                         Integer.parseInt(reader.readLine()),
                         Integer.parseInt(reader.readLine()),
@@ -42,12 +51,9 @@ public class FileWorking {
                         Float.parseFloat(reader.readLine())
                 ));
             }
+            if(isDataCorrect(cources)) return cources;
+            else return null;
         } catch (IOException e){ return null;}
-        return cources;
-    }
-
-    private static boolean toBool(String readLine) {
-        return readLine.equals("True");
     }
 
     private static BufferedReader initReader() {
